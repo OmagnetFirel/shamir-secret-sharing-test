@@ -1,0 +1,13 @@
+lang,lib,ok_split,ok_combine,ok_fail_k_minus_1,shares_count,time_ms,error,stderr
+js,secrets.js-grempe,True,True,True,5,3.606,,
+js,shamir-secret-sharing,False,False,False,,2,,
+python,shamirs,False,False,False,0,0.005,,
+python,pyshamir,True,True,True,5,18.779,,
+python,shamir,True,True,True,5,0.2224445343017578,,
+python,shamir-lbodlev,False,False,False,0,0,cannot import name 'Shamir' from 'shamir' (/usr/local/lib/python3.10/dist-packages/shamir.py),
+java,com.codahale:shamir,True,True,True,5,35.182,,
+java,io.github.deemru:shamir255,True,True,True,5,35.132,,
+java,org.mitre.secretsharing,True,False,False,5,0.0,arraycopy: source index -1 out of bounds for byte[15],
+csharp,ShamirSecretSharing,True,True,True,5,20.591,,
+csharp,SecretSharingDotNet,True,True,True,5,56.8105,,
+csharp,mtanksl.ShamirSecretSharing,True,True,True,5,26.7502,,

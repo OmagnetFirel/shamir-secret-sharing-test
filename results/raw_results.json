@@ -1,0 +1,112 @@
+[
+  {
+    "lang": "js",
+    "lib": "secrets.js-grempe",
+    "ok_split": true,
+    "shares_count": 5,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "time_ms": 3.606
+  },
+  {
+    "lang": "js",
+    "lib": "shamir-secret-sharing",
+    "ok_split": false,
+    "ok_combine": false,
+    "ok_fail_k_minus_1": false,
+    "time_ms": 2
+  },
+  {
+    "lang": "python",
+    "lib": "shamirs",
+    "ok_split": false,
+    "shares_count": 0,
+    "error_split": "plaintext must be a nonnegative integer strictly less than the prime modulus",
+    "ok_combine": false,
+    "ok_fail_k_minus_1": false,
+    "time_ms": 0.005
+  },
+  {
+    "lang": "python",
+    "lib": "pyshamir",
+    "ok_split": true,
+    "shares_count": 5,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "time_ms": 18.779
+  },
+  {
+    "lang": "python",
+    "lib": "shamir",
+    "ok_split": true,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "shares_count": 5,
+    "time_ms": 0.2224445343017578
+  },
+  {
+    "lang": "python",
+    "lib": "shamir-lbodlev",
+    "ok_split": false,
+    "ok_combine": false,
+    "ok_fail_k_minus_1": false,
+    "shares_count": 0,
+    "time_ms": 0,
+    "error": "cannot import name 'Shamir' from 'shamir' (/usr/local/lib/python3.10/dist-packages/shamir.py)"
+  },
+  {
+    "lang": "java",
+    "lib": "com.codahale:shamir",
+    "ok_split": true,
+    "shares_count": 5,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "time_ms": 35.182
+  },
+  {
+    "lang": "java",
+    "lib": "io.github.deemru:shamir255",
+    "ok_split": true,
+    "shares_count": 5,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "time_ms": 35.132
+  },
+  {
+    "lib": "org.mitre.secretsharing",
+    "ok_split": true,
+    "time_ms": 0.0,
+    "ok_fail_k_minus_1": false,
+    "lang": "java",
+    "error": "arraycopy: source index -1 out of bounds for byte[15]",
+    "shares_count": 5,
+    "ok_combine": false
+  },
+  {
+    "lang": "csharp",
+    "lib": "ShamirSecretSharing",
+    "ok_split": true,
+    "shares_count": 5,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "time_ms": 20.591
+  },
+  {
+    "lang": "csharp",
+    "lib": "SecretSharingDotNet",
+    "ok_split": true,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "shares_count": 5,
+    "time_ms": 56.8105
+  },
+  {
+    "lang": "csharp",
+    "lib": "mtanksl.ShamirSecretSharing",
+    "ok_split": true,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "shares_count": 5,
+    "time_ms": 26.7502
+  }
+]

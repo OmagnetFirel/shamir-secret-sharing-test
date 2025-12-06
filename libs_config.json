@@ -1,0 +1,75 @@
+[
+  {
+    "lang": "js",
+    "name": "secrets.js-grempe",
+    "repo": "https://www.npmjs.com/package/secrets.js-grempe",
+    "cmd": "node js/test_secrets_grempe.js"
+  },
+  {
+    "lang": "js",
+    "name": "shamir-secret-sharing",
+    "repo": "https://www.npmjs.com/package/shamir-secret-sharing",
+    "cmd": "node js/test_shamir_secret_sharing.js"
+  },
+  {
+    "lang": "python",
+    "name": "shamirs",
+    "repo": "https://pypi.org/project/shamirs/",
+    "cmd": "python3 python/test_shamirs.py"
+  },
+  {
+    "lang": "python",
+    "name": "pyshamir",
+    "repo": "https://pypi.org/project/pyshamir/",
+    "cmd": "python3 python/test_pyshamir.py"
+  }, 
+  {
+    "lang": "python",
+    "name": "shamir",
+    "repo": "https://github.com/kurtbrose/shamir",
+    "cmd": "python3 python/test_shamir.py"
+  },  
+  {
+    "lang": "python",
+    "lib": "shamir-lbodlev",
+    "repo": "https://github.com/lbodlev888/shamir",
+    "cmd": "python3 python/test_shamir_lbodlev.py"
+  },  
+  {
+    "lang": "java",
+    "name": "com.codahale:shamir",
+    "repo": "https://mvnrepository.com/artifact/com.codahale/shamir",
+    "cmd": "java -jar java/target/TestCodahaleShamir.jar"
+  },
+  {
+    "lang": "java",
+    "name": "io.github.deemru:shamir255",
+    "repo": "https://github.com/deemru/Shamir255-Java",
+    "cmd": "java -jar java/target/TestShamir255.jar"
+  },
+  {
+    "lang": "java",
+    "name": "org.mitre.secretsharing",
+    "repo": "https://github.com/secretsharing/secretsharing",
+    "cmd": "java -jar java/target/TestMitreSecretSharing.jar "
+  },  
+  {
+      "lang": "csharp",
+      "name": "ShamirSecretSharing",
+      "repo": "https://www.nuget.org/packages/ShamirSecretSharing",
+      "cmd": "dotnet run --project csharp/ShamirSecretSharing --configuration Release"
+  },
+  {
+      "lang": "csharp",
+      "name": "SecretSharingDotNet",
+      "repo": "https://github.com/shinji-san/SecretSharingDotNet",
+      "cmd": "dotnet run --project csharp/TestSecretSharing --configuration Release -- --secret {secret} --n {n} --k {k}"
+},
+{
+  "lang": "csharp",
+  "name": "mtanksl.ShamirSecretSharing",
+  "repo": "https://github.com/mtanksl/ShamirSecretSharing",
+  "cmd": "dotnet run --project csharp/mtanksl --configuration Release"
+}
+
+]

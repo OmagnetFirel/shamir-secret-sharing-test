@@ -1,0 +1,9 @@
+services:
+  tester:
+    build: .
+    container_name: secret-sharing-tester
+    command: ["tail", "-f", "/dev/null"]
+    volumes:
+      - ./results:/app/results
+    stdin_open: true
+    tty: true

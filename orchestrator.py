@@ -11,15 +11,38 @@ def run_cmd(cmd: str) -> dict:
         capture_output=True,
         text=True
     )
+    
+    stdout = completed.stdout.strip()
+    
     if completed.returncode != 0:
         # Em caso de erro, registra algo padrão
         return {
             "error": True,
             "cmd": cmd,
-            "stderr": completed.stderr.strip()
+            "stderr": completed.stderr.strip(),
+            "stdout": stdout  # Para debug
         }
+    
+    # Se stdout está vazio, retorna erro
+    if not stdout:
+        return {
+            "error": True,
+            "cmd": cmd,
+            "stderr": "Empty stdout - test did not return JSON",
+            "stdout": ""
+        }
+    
     # Espera uma linha JSON válida
-    return json.loads(completed.stdout.strip())
+    try:
+        return json.loads(stdout)
+    except json.JSONDecodeError as e:
+        return {
+            "error": True,
+            "cmd": cmd,
+            "stderr": f"Invalid JSON: {str(e)}",
+            "stdout": stdout[:200]  # Primeiros 200 chars para debug
+        }
+
 
 def main():
     base_dir = Path(__file__).parent

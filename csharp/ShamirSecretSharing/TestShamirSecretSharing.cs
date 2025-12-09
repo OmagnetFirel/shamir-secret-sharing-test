@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using ShamirSecretSharing; // pacote NuGet ShamirSecretSharing [attached_file:1]
+using ShamirSecretSharing; 
 
 class TestShamirSecretSharing
 {
@@ -25,7 +25,7 @@ class TestShamirSecretSharing
 
         var sw = Stopwatch.StartNew();
 
-        var sss = new ShamirSecretSharingService(); // usa prime padrão 257 [attached_file:1]
+        var sss = new ShamirSecretSharingService(); 
         Share[] shares = Array.Empty<Share>();
 
         // 1) split

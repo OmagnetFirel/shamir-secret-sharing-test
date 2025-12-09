@@ -1,0 +1,92 @@
+# Secret Sharing Test — Documentação
+
+Resumo curto
+
+Projeto para comparar implementações da técnica Shamir's Secret Sharing em várias linguagens (JS, Python, Java, C#). O orquestrador executa testes padronizados para medir: sucesso na divisão (ok_split), recuperação com k shares (ok_combine), falha com k-1 shares (ok_fail_k_minus_1) e tempo (time_ms).
+
+Estrutura do repositório
+
+- Dockerfile, docker-compose.yml — imagem e orquestração para executar os testes em um container homogêneo
+- orchestrator.py — script que lê libs_config.json e executa todos os testes
+- libs_config.json — lista de bibliotecas e comandos de execução
+- results/ — saída dos testes (raw_results.json e benchmarks.csv)
+
+Subpastas por linguagem
+
+- js/ — testes Node.js (scripts de teste e package.json)
+- python/ — testes Python (cada implementação tem seu requirements.txt e script)
+- java/ — projetos Java (Maven)
+- csharp/ — projetos .NET (dotnet)
+
+Como os testes funcionam
+
+1. O orchestrator lê libs_config.json e, para cada entrada, executa o comando configurado.
+2. Cada script de teste deve receber os argumentos (--secret, --n, --k) e imprimir um JSON com o resultado no stdout.
+3. O orchestrator coleta os JSONs, grava results/raw_results.json e um resumo CSV em results/benchmarks.csv.
+
+Exemplo de segredo e parâmetros usados por padrão
+
+- secret (hex): 00112233445566778899AABBCCDDEEFF
+- n: 5
+- k: 3
+
+Como executar (local ou no container)
+
+Opção recomendada — Docker (recomenda Ubuntu base no Dockerfile):
+
+1. Build + run em background:
+
+   docker-compose up --build
+
+2. Entrar no container para debugar um teste específico:
+
+   docker-compose exec tester bash -c "python3 python/shamir_ss/test_shamir_ss.py --secret 11002233445566778899AABBCCDDEEFF --n 5 --k 3"
+
+Execução local sem Docker
+
+- Instale as dependências conforme cada pasta (npm install, venv + pip install -r, mvn package, dotnet build) e execute orchestrator.py diretamente.
+
+Formato de saída esperado (por teste)
+
+Cada script deve imprimir um JSON com pelo menos as chaves:
+
+- lang, lib
+- ok_split (bool), ok_combine (bool), ok_fail_k_minus_1 (bool)
+- shares_count (int), time_ms (number)
+
+Arquivos de resultado
+
+- results/raw_results.json — array com o JSON retornado por cada teste (entrada bruta)
+- results/benchmarks.csv — resumo tabular com colunas: lang, lib, ok_split, ok_combine, ok_fail_k_minus_1, shares_count, time_ms, error, stderr
+
+Configuração das bibliotecas
+
+Edite libs_config.json para adicionar/alterar bibliotecas. Cada entrada tem: lang, name, repo, cmd. O campo cmd pode usar placeholders: {secret}, {n}, {k} (o orchestrator os substitui).
+
+Problemas conhecidos (status atual)
+
+- shamir-secret-sharing (JS 0.0.4): incompatível com Node 20 (usa API de crypto legada).
+- shamirs (Python): pacote exige inteiro em vez de hex em algumas APIs — adaptado com script alternativo quando disponível.
+- shamir-ss (Python): falha na reconstituição ("Invalid padding") para o caso de teste atual.
+
+Boas práticas para adicionar um novo teste
+
+1. Coloque o script de teste na pasta da linguagem (js/, python/ etc.).
+2. Garanta que aceite --secret, --n e --k (ou proveja cmd com placeholders em libs_config.json).
+3. Retorne um único JSON válido para stdout com os campos esperados.
+4. Adicione uma entrada em libs_config.json apontando para o comando de execução (use o venv/bin/python quando usar ambientes isolados).
+
+Exemplo mínimo de entrada em libs_config.json
+
+{
+"lang": "js",
+"name": "secrets.js-grempe",
+"repo": "https://www.npmjs.com/package/secrets.js-grempe",
+"cmd": "node js/test_secrets_grempe.js"
+}
+
+Sugestões de melhoria
+
+- Registrar logs detalhados por teste (arquivo por execução) para facilitar debugging.
+- Adicionar um modo "fast" que roda apenas um subconjunto de libs durante desenvolvimento.
+- Normalize o formato de tempo (ms com 3 casas decimais) em todos os scripts.

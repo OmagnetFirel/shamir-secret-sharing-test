@@ -42,7 +42,8 @@ def test_shamir(secret_hex, n, k):
             result["ok_fail_k_minus_1"] = True
         
         end_time = time.time()
-        result["time_ms"] = (end_time - start_time) * 1000
+        # Normalize to milliseconds with 3 decimal places
+        result["time_ms"] = round((end_time - start_time) * 1000, 3)
         
     except Exception as e:
         result["error"] = str(e)

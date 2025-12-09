@@ -1,4 +1,1 @@
-shamirs
-pyshamir
 git+https://github.com/kurtbrose/shamir.git
-shamir-lbodlev

@@ -12,28 +12,46 @@
     "cmd": "node js/test_shamir_secret_sharing.js"
   },
   {
+    "lang": "js",
+    "name": "shamirs-secret-sharing",
+    "repo": "https://github.com/jwerle/shamirs-secret-sharing",
+    "cmd": "node js/test_shamirs_secret_sharing.js"
+  },
+  {
+    "lang": "js",
+    "name": "shamir",
+    "repo": "https://www.npmjs.com/package/shamir",
+    "cmd": "node js/test_shamir.js"
+  },    
+  {
     "lang": "python",
     "name": "shamirs",
     "repo": "https://pypi.org/project/shamirs/",
-    "cmd": "python3 python/test_shamirs.py"
+    "cmd": "python/shamirs/.venv/bin/python3 python/shamirs/test_shamirs.py"
   },
   {
     "lang": "python",
     "name": "pyshamir",
     "repo": "https://pypi.org/project/pyshamir/",
-    "cmd": "python3 python/test_pyshamir.py"
+    "cmd": "python/pyshamir/.venv/bin/python3 python/pyshamir/test_pyshamir.py"
   }, 
   {
     "lang": "python",
-    "name": "shamir",
+    "name": "shamir-kurtbrose",
     "repo": "https://github.com/kurtbrose/shamir",
-    "cmd": "python3 python/test_shamir.py"
+    "cmd": "python/shamir/.venv/bin/python3 python/shamir/test_shamir.py"
   },  
   {
     "lang": "python",
-    "lib": "shamir-lbodlev",
+    "name": "shamir-lbodlev",
     "repo": "https://github.com/lbodlev888/shamir",
-    "cmd": "python3 python/test_shamir_lbodlev.py"
+    "cmd": "python/lbodlev/.venv/bin/python3 python/lbodlev/test_shamir_lbodlev.py"
+  },
+  {
+    "lang": "python",
+    "name": "shamir-ss",
+    "repo": "https://pypi.org/project/shamir-ss/",
+    "cmd": "python/shamir_ss/.venv/bin/python3 python/shamir_ss/test_shamir_ss.py"
   },  
   {
     "lang": "java",
@@ -71,5 +89,4 @@
   "repo": "https://github.com/mtanksl/ShamirSecretSharing",
   "cmd": "dotnet run --project csharp/mtanksl --configuration Release"
 }
-
 ]

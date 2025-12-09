@@ -47,7 +47,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.6.0</version>
                 <executions>
-                    <!-- JAR para TestCodahaleShamir -->
                     <execution>
                         <id>codahale</id>
                         <phase>package</phase>
@@ -67,7 +66,6 @@
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
-                    <!-- JAR para TestShamir255 -->
                     <execution>
                         <id>shamir255</id>
                         <phase>package</phase>
@@ -87,7 +85,6 @@
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
-                    <!-- JAR para TestMitreSecretSharing -->
                     <execution>
                         <id>mitre</id>
                         <phase>package</phase>

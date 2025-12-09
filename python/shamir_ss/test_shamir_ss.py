@@ -4,6 +4,7 @@ import json
 import time
 import argparse
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--secret', required=True, help='Secret in hex')
@@ -11,11 +12,13 @@ def main():
     parser.add_argument('--k', type=int, required=True, help='Threshold')
     args = parser.parse_args()
     
-    secret_bytes = bytes.fromhex(args.secret)
+    # Converte hex para string (a lib trabalha com text)
+    secret_hex = args.secret
+    secret_bytes = bytes.fromhex(secret_hex)
     
     result = {
         "lang": "python",
-        "lib": "shamir-lbodlev",
+        "lib": "shamir-ss",
         "ok_split": False,
         "ok_combine": False,
         "ok_fail_k_minus_1": False,
@@ -24,45 +27,40 @@ def main():
     }
     
     try:
-        from shamir import Shamir
+        from shamir_ss import generate_text_shares, reconstruct_text_secret
         
         start = time.time()
         
-        # Split: disable Feldman VSS for pure SSS
-        shamir = Shamir(secret=secret_bytes, n=args.n, k=args.k, feldman_support=False)
-        shares = shamir.get_shares()
+        # Split: usa hex string como "text"
+        shares = generate_text_shares(secret_hex, args.k, args.n)
         
         result["shares_count"] = len(shares)
         result["ok_split"] = (len(shares) == args.n)
         
         # Combine with k shares
-        recoverer = Shamir()
-        for i in range(args.k):
-            recoverer.add_share(shares[i])
-        recovered = recoverer.recover()
+        recovered_hex = reconstruct_text_secret(shares[:args.k])
+        recovered_bytes = bytes.fromhex(recovered_hex)
         
-        result["ok_combine"] = (recovered == secret_bytes)
+        result["ok_combine"] = (recovered_bytes == secret_bytes)
         
         # Try with k-1 shares (should fail or produce different result)
-        recoverer_fail = Shamir()
-        for i in range(args.k - 1):
-            recoverer_fail.add_share(shares[i])
-        
         try:
-            recovered_fail = recoverer_fail.recover()
-            # If it doesn't raise error, check if result is different
-            result["ok_fail_k_minus_1"] = (recovered_fail != secret_bytes)
+            recovered_fail_hex = reconstruct_text_secret(shares[:args.k-1])
+            recovered_fail_bytes = bytes.fromhex(recovered_fail_hex)
+            result["ok_fail_k_minus_1"] = (recovered_fail_bytes != secret_bytes)
         except Exception:
-            # If it raises error, that's correct behavior
+            # Se lançar exceção, é comportamento correto
             result["ok_fail_k_minus_1"] = True
         
         end = time.time()
-        result["time_ms"] = round((end - start) * 1000, 2)
+        # Normalize to milliseconds with 3 decimal places
+        result["time_ms"] = round((end - start) * 1000, 3)
         
     except Exception as e:
         result["error"] = str(e)
     
     print(json.dumps(result))
+
 
 if __name__ == "__main__":
     main()

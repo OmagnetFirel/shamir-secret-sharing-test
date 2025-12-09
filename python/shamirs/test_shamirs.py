@@ -3,7 +3,7 @@ import argparse
 import json
 import time
 
-from shamirs import shares, interpolate  # API da lib atualizada
+from shamirs import shares, interpolate  
 
 def main():
     parser = argparse.ArgumentParser()
@@ -12,7 +12,6 @@ def main():
     parser.add_argument("--k", type=int, required=True)
     args = parser.parse_args()
 
-    # A lib shamirs trabalha com inteiros; o orchestrator manda hex
     secret_int = int(args.secret, 16)
     n = args.n
     k = args.k

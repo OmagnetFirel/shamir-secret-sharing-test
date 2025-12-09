@@ -28,7 +28,7 @@ function main() {
 
   // 1) split
   try {
-    // secrets.share espera segredo em hex sem prefixo 0x [web:49]
+    // secrets.share espera segredo em hex sem prefixo 0x
     shares = secrets.share(secretHex, n, k);
     result.ok_split = Array.isArray(shares) && shares.length === n;
     result.shares_count = shares.length;
@@ -42,7 +42,7 @@ function main() {
   // 2) combine com k shares
   try {
     if (shares.length >= k) {
-      const rec = secrets.combine(shares.slice(0, k)).toLowerCase(); // hex [web:49]
+      const rec = secrets.combine(shares.slice(0, k)).toLowerCase(); // hex
       result.ok_combine = (rec === secretHex);
     } else {
       result.ok_combine = false;

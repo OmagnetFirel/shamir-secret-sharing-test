@@ -2,7 +2,7 @@
 import argparse
 import json
 import time
-from pyshamir import split, combine  # nomes ilustrativos [web:145]
+from pyshamir import split, combine
 
 def main():
     parser = argparse.ArgumentParser()
@@ -24,7 +24,7 @@ def main():
     shares = []
 
     try:
-        shares = split(secret_bytes, n, k)  # veja assinatura real [web:145]
+        shares = split(secret_bytes, n, k)  
         result["ok_split"] = isinstance(shares, list) and len(shares) == n
         result["shares_count"] = len(shares)
     except Exception as e:

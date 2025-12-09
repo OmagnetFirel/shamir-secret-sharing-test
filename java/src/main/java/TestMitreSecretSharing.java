@@ -67,7 +67,8 @@ public class TestMitreSecretSharing {
 
             long endTime = System.nanoTime();
             double elapsedMs = (endTime - startTime) / 1_000_000.0;
-            result.put("time_ms", elapsedMs);
+            // Normalize to milliseconds with 3 decimal places
+            result.put("time_ms", Math.round(elapsedMs * 1000.0) / 1000.0);
 
         } catch (Exception e) {
             result.put("error", e.getMessage());

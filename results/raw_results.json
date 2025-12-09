@@ -6,7 +6,7 @@
     "shares_count": 5,
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
-    "time_ms": 3.606
+    "time_ms": 3.53
   },
   {
     "lang": "js",
@@ -14,7 +14,25 @@
     "ok_split": false,
     "ok_combine": false,
     "ok_fail_k_minus_1": false,
-    "time_ms": 2
+    "time_ms": 0.886
+  },
+  {
+    "lang": "js",
+    "lib": "shamirs-secret-sharing",
+    "ok_split": true,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "shares_count": 5,
+    "time_ms": 27.398
+  },
+  {
+    "lang": "js",
+    "lib": "shamir",
+    "ok_split": true,
+    "ok_combine": true,
+    "ok_fail_k_minus_1": true,
+    "shares_count": 5,
+    "time_ms": 1.968
   },
   {
     "lang": "python",
@@ -24,7 +42,7 @@
     "error_split": "plaintext must be a nonnegative integer strictly less than the prime modulus",
     "ok_combine": false,
     "ok_fail_k_minus_1": false,
-    "time_ms": 0.005
+    "time_ms": 0.008
   },
   {
     "lang": "python",
@@ -33,7 +51,7 @@
     "shares_count": 5,
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
-    "time_ms": 18.779
+    "time_ms": 19.868
   },
   {
     "lang": "python",
@@ -42,17 +60,26 @@
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
     "shares_count": 5,
-    "time_ms": 0.2224445343017578
+    "time_ms": 0.268
   },
   {
     "lang": "python",
     "lib": "shamir-lbodlev",
-    "ok_split": false,
+    "ok_split": true,
+    "ok_combine": false,
+    "ok_fail_k_minus_1": true,
+    "shares_count": 5,
+    "time_ms": 4.104
+  },
+  {
+    "lang": "python",
+    "lib": "shamir-ss",
+    "ok_split": true,
     "ok_combine": false,
     "ok_fail_k_minus_1": false,
-    "shares_count": 0,
+    "shares_count": 5,
     "time_ms": 0,
-    "error": "cannot import name 'Shamir' from 'shamir' (/usr/local/lib/python3.10/dist-packages/shamir.py)"
+    "error": "Invalid padding"
   },
   {
     "lang": "java",
@@ -61,7 +88,7 @@
     "shares_count": 5,
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
-    "time_ms": 35.182
+    "time_ms": 76.614
   },
   {
     "lang": "java",
@@ -70,7 +97,7 @@
     "shares_count": 5,
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
-    "time_ms": 35.132
+    "time_ms": 55.316
   },
   {
     "lib": "org.mitre.secretsharing",
@@ -89,7 +116,7 @@
     "shares_count": 5,
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
-    "time_ms": 20.591
+    "time_ms": 18.609
   },
   {
     "lang": "csharp",
@@ -98,7 +125,7 @@
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
     "shares_count": 5,
-    "time_ms": 56.8105
+    "time_ms": 55.232
   },
   {
     "lang": "csharp",
@@ -107,6 +134,6 @@
     "ok_combine": true,
     "ok_fail_k_minus_1": true,
     "shares_count": 5,
-    "time_ms": 26.7502
+    "time_ms": 20.778
   }
 ]

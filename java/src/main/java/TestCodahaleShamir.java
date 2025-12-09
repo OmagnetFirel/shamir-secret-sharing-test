@@ -28,14 +28,13 @@ public class TestCodahaleShamir {
 
         long start = System.nanoTime();
 
-        // Usa exatamente a API da lib: Scheme(SecureRandom, n, k) [attached_file:1][web:132]
         Scheme scheme = new Scheme(new SecureRandom(), n, k);
 
         Map<Integer, byte[]> parts = null;
 
         // 1) split
         try {
-            parts = scheme.split(secret);                  // Map<Integer, byte[]> [attached_file:1][web:132]
+            parts = scheme.split(secret);                  // Map<Integer, byte[]>
             boolean okSplit = parts.size() == n;
             result.put("ok_split", okSplit);
             result.put("shares_count", parts.size());
@@ -55,7 +54,7 @@ public class TestCodahaleShamir {
                     count++;
                     if (count >= k) break;
                 }
-                byte[] rec = scheme.join(subset);         // join(Map<Integer, byte[]>) [attached_file:1][web:132]
+                byte[] rec = scheme.join(subset);         // join(Map<Integer, byte[]>)
                 boolean okCombine = bytesEquals(rec, secret);
                 result.put("ok_combine", okCombine);
             } else {
@@ -94,8 +93,9 @@ public class TestCodahaleShamir {
 
         long totalNs = System.nanoTime() - start;
         double ms = totalNs / 1_000_000.0;
-        result.put("time_ms", Math.round(ms * 1000.0) / 1000.0); // Normalize to 3 decimal places
-
+        // Normalize to milliseconds with 3 decimal places
+        result.put("time_ms", Math.round(ms * 1000.0) / 1000.0);
+     
         System.out.println(toJson(result));
     }
 

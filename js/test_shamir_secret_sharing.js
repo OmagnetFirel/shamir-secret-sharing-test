@@ -33,13 +33,13 @@ function main() {
     lib: "shamir-secret-sharing"
   };
 
-  const start = Date.now();
+  const start = process.hrtime.bigint();
 
   let shares = [];
 
   // 1) split
   try {
-    shares = split(secretBytes, n, k); // retorna Uint8Array[] [web:155]
+    shares = split(secretBytes, n, k); // retorna Uint8Array[] 
     result.ok_split = Array.isArray(shares) && shares.length === n;
     result.shares_count = shares.length;
   } catch (e) {
@@ -52,7 +52,7 @@ function main() {
   // 2) combine com k shares
   try {
     if (shares.length >= k) {
-      const rec = combine(shares.slice(0, k)); // Uint8Array [web:155]
+      const rec = combine(shares.slice(0, k)); // Uint8Array 
       const recHex = Buffer.from(rec).toString("hex");
       result.ok_combine = recHex.toLowerCase() === secretHex.toLowerCase();
     } else {
@@ -83,8 +83,9 @@ function main() {
     result.error_fail_k_minus_1 = String(e);
   }
 
-  const total = Date.now() - start;
-  result.time_ms = Number(total.toFixed(3));
+  const end = process.hrtime.bigint();
+  const totalMs = Number(end - start) / 1e6;
+  result.time_ms = parseFloat(totalMs.toFixed(3));
 
   process.stdout.write(JSON.stringify(result) + "\n");
 }

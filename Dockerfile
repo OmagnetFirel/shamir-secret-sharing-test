@@ -2,12 +2,12 @@ FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y \
     curl wget git ca-certificates \
-    python3 python3-pip \
+    python3 python3-pip python3-venv \
     openjdk-17-jdk maven \
     dotnet-sdk-8.0 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install modern Node.js (20.x) - Remove conflicting packages first
+# Install modern Node.js (20.x)
 RUN apt-get update && \
     apt-get remove -y nodejs npm nodejs-doc libnode-dev 2>/dev/null || true && \
     apt-get autoremove -y && \
@@ -17,15 +17,22 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-# Copy apenas arquivos de dependências PRIMEIRO (menos frequentes)
+# Copy apenas arquivos de dependências PRIMEIRO
 COPY java/ java/
 COPY csharp/ csharp/
-COPY python/requirements.txt python/
+COPY python/ python/
 COPY js/package.json js/
 
-
-# Python deps
-RUN pip3 install -r python/requirements.txt
+# Cria venv para cada subpasta Python e instala dependências isoladamente
+RUN for dir in /app/python/*/; do \
+        if [ -f "$dir/requirements.txt" ]; then \
+            venv_name=$(basename "$dir"); \
+            echo "Creating venv for $venv_name"; \
+            python3 -m venv "$dir/.venv"; \
+            "$dir/.venv/bin/pip" install --upgrade pip; \
+            "$dir/.venv/bin/pip" install -r "$dir/requirements.txt"; \
+        fi \
+    done
 
 # JS deps
 RUN cd js && npm install
@@ -38,7 +45,7 @@ RUN cd csharp/ShamirSecretSharing && dotnet restore && dotnet build -c Release
 RUN cd csharp/TestSecretSharing && dotnet restore && dotnet build -c Release
 RUN cd csharp/mtanksl && dotnet restore && dotnet build -c Release
 
-# Copy SCRIPTS no final (muda com frequência)
+# Copy SCRIPTS no final
 COPY python/*.py python/
 COPY js/*.js js/
 COPY java/src/ java/src/

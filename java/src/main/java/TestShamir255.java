@@ -31,7 +31,7 @@ public class TestShamir255 {
 
         // 1) split
         try {
-            shares = Shamir255.share(secret, k, n); // Map<Integer, byte[]> [web:18]
+            shares = Shamir255.share(secret, k, n); // Map<Integer, byte[]> 
             boolean okSplit = shares.size() == n;
             result.put("ok_split", okSplit);
             result.put("shares_count", shares.size());
@@ -51,7 +51,7 @@ public class TestShamir255 {
                     count++;
                     if (count >= k) break;
                 }
-                byte[] rec = Shamir255.recover(subset); // byte[] [web:18]
+                byte[] rec = Shamir255.recover(subset); // byte[]
                 boolean okCombine = bytesEquals(rec, secret);
                 result.put("ok_combine", okCombine);
             } else {

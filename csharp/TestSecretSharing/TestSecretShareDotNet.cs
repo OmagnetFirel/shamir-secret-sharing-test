@@ -85,7 +85,7 @@ namespace SecretSharingDotNetTest
                 }
 
                 sw.Stop();
-                result["time_ms"] = sw.Elapsed.TotalMilliseconds;
+                result["time_ms"] = Math.Round(sw.Elapsed.TotalMilliseconds, 3);
             }
             catch (Exception ex)
             {

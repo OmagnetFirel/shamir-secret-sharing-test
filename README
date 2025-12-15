@@ -36,7 +36,7 @@ Opção recomendada — Docker (recomenda Ubuntu base no Dockerfile):
 
 1. Build + run em background:
 
-   docker-compose up --build
+   docker-compose up --build -d
 
 2. Executar todos os testes:
 

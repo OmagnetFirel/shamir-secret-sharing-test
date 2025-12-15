@@ -38,7 +38,11 @@ Opção recomendada — Docker (recomenda Ubuntu base no Dockerfile):
 
    docker-compose up --build
 
-2. Entrar no container para debugar um teste específico:
+2. Executar todos os testes:
+
+   docker-compose exec tester python3 orchestrator.py
+
+3. Entrar no container para debugar um teste específico:
 
    docker-compose exec tester bash -c "python3 python/shamir_ss/test_shamir_ss.py --secret 11002233445566778899AABBCCDDEEFF --n 5 --k 3"
 
